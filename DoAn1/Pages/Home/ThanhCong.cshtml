@@ -1,0 +1,46 @@
+﻿@page
+@model DoAn1.Pages.Home.ThanhCongModel
+@{
+}
+<!DOCTYPE html>
+<html lang="vi" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="~/css/bootstrapTT.min.css" type="text/css">
+</head>
+
+<body>
+    <main role="main">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="container mt-4">
+                <form class="needs-validation" name="frmthanhtoan" action="/Home/CreatePaymentUrl" id="frmCreateOrder" method="post"
+                      action="#">
+                    <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
+
+                    <div class="py-5 text-center">
+                        <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
+                        <h2>Thanh toán</h2>
+                        @if (Model.ResponseCode == "00")
+                        {
+                            <p class="lead">Thanh Toán Thành Công !!.</p>
+                        }
+                        else
+                        {
+                            <p class="lead">Thanh Toán Không Thành Công !!.</p>
+                        }
+                    </div>
+                </form>
+            </div>
+        }
+        else
+        {
+            Response.Redirect("/Account/Login");
+        }
+    </main>
+</body>
+
+</html>
